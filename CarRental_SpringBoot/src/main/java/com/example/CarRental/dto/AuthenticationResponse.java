@@ -1,0 +1,15 @@
+package com.example.CarRental.dto;
+
+import com.example.CarRental.enums.UserRole;
+
+import lombok.Data;
+
+@Data
+public class AuthenticationResponse {
+	
+	private String jwt;
+	
+	private UserRole userRole;
+	
+	private Long userId;
+}
