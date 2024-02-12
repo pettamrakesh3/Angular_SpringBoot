@@ -9,6 +9,12 @@ const routes: Routes = [
   },
   {
     path:"login",component:LoginComponent
+  },
+  {
+    path:"admin", loadChildren : ()=> import("./modules/admin/admin.module").then(m => m.AdminModule)
+  },
+  {
+    path:"customer", loadChildren : ()=> import("./modules/customer/customer.module").then(m => m.CustomerModule)
   }
 ];
 

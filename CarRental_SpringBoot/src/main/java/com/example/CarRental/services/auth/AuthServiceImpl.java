@@ -11,6 +11,8 @@ import com.example.CarRental.entity.User;
 import com.example.CarRental.enums.UserRole;
 import com.example.CarRental.repository.UserRepository;
 import com.example.CarRental.services.auth.AuthService;
+
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -22,6 +24,21 @@ public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
+    @PostConstruct
+    public void createAdminAccount() {
+    	User adminAccount=userRepository.findByUserRole(UserRole.ADMIN);
+    	if(adminAccount==null) {
+    		User newAdminAccount=new User();
+    		newAdminAccount.setName("Admin");
+    		newAdminAccount.setEmail("admin@gmail.com");
+    		newAdminAccount.setPassword(new BCryptPasswordEncoder().encode("admin"));
+    		newAdminAccount.setUserRole(UserRole.ADMIN);
+    		userRepository.save(newAdminAccount);
+    		
+    		System.out.println("Admi account created successfully");
+    	}
+    }
+    
     @Override
     public UserDto createCustomer(SignUpRequest signUpRequest) {
         logger.info("Creating customer with email: {}", signUpRequest.getEmail());

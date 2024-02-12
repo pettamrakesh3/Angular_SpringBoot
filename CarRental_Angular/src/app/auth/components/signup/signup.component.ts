@@ -44,7 +44,7 @@ export class SignupComponent{
         console.log(res);
         if(res.id!=null){
           this.signupSuccess=true;
-          // this.route.navigateByUrl("/login")
+          this.route.navigateByUrl("/login")
         }
         else{
           this.signupSuccess=false;
