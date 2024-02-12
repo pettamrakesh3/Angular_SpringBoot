@@ -3,14 +3,14 @@
         <div class="col-md-6">
             <div class="login-card">
                 <h2>Login</h2>
-                <form>
+                <form [formGroup]="loginForm">
                     <div class="mb-3">
-                        <input type="email" class="form-control" id="email" placeholder="Email">
+                        <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email">
                     </div>
                     <div class="mb-3">
-                        <input type="password" class="form-control" id="password" placeholder="Password">
+                        <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
                     </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary" (click)="login()">Login</button>
                 </form>
             </div>
         </div>
